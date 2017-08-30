@@ -1,22 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿///A task tray app for toggling the tracpad.
+using System;
 using System.Windows.Forms;
 
 namespace TrackpadToggle
 {
     static class Program
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
         [STAThread]
         static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+
+            // Show the system tray icon.					
+            using (ProcessIcon pi = new ProcessIcon())
+            {
+                pi.Display();
+                Application.Run();
+            }
         }
     }
 }
